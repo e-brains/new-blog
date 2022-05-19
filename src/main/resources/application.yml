@@ -1,0 +1,37 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
+    username: user02
+    password: user02
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        # Entity를 가지고 테이블을 만들때 PhysicalNamingStrategyStandardImpl은 카멜표기를 했을때 필드명을 그대로 똑 같이 만든다.
+        # SpringNamingStrategyStandardImpl은 카멜표기를 했을때 필드명을 언더스코어를 붙이면서 소문자로 만든다.
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false # jpa의 기본 넘버링 전략을 따르지 않는다.
+    show-sql: true #부팅 시 쿼리문 보이기
+    properties:
+      hibernate.format_sql: true # 쿼리문을 보기 좋게 정렬해서 보여주기
+
+#  jackson:
+#    serialization:
+#      fail-on-empty-beans: false
